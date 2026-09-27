@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "venice-inference-organizer"
+version = "0.1.0"
+description = "Live Venice.ai model catalog, lane resolver, MCP server, and key dashboard."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Max Infeld" }]
+dependencies = [
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.27",
+  "httpx>=0.27",
+  "pydantic>=2.6",
+  "pydantic-settings>=2.2",
+  "python-dotenv>=1.0",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.23"]
+
+[project.scripts]
+vio = "vio.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["vio*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
